@@ -5,7 +5,7 @@ import RecipesGallery from "./components/recipes/RecipeGallery";
 const App = () => {
   return (
     <div className="App">
-      <h1>hello</h1>
+      <h1>COOK 'n' RATE</h1>
       <RecipesGallery />
       <NavBar />
     </div>

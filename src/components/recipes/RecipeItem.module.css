@@ -1,0 +1,18 @@
+.wrapper {
+  width: 50%;
+  background-color: aliceblue;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.558);
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-weight: bolder;
+  font-size: x-large;
+  text-transform: capitalize;
+}
+
+.description {
+}
