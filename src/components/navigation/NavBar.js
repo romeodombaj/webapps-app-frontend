@@ -1,11 +1,14 @@
 import styles from "./NavBar.module.css";
+import addIcon from "../../assets/plus.png";
+import profileIcon from "../../assets/profile.png";
+import categoryIcon from "../../assets/category.png";
 
 const NavBar = () => {
   return (
     <div className={styles.wrapper}>
-      <h1>1</h1>
-      <h1>2</h1>
-      <h1>3</h1>
+      <img src={categoryIcon} className={styles[`action`]} />
+      <img src={addIcon} className={styles[`action`]} />
+      <img src={profileIcon} className={styles[`action`]} />
     </div>
   );
 };
