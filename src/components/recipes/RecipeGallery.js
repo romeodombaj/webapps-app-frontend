@@ -1,5 +1,5 @@
 import styles from "./RecipesGallery.module.css";
-import RecipeItem from "./ReipeItem";
+import RecipeItem from "./recepieItems/RecipeItem";
 import leftArrow from "../../assets/leftarrow.png";
 import rightArrow from "../../assets/rightarrow.png";
 import { useState } from "react";
