@@ -10,10 +10,10 @@ const NavBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const navigationButtonsArray = [
-    { id: 0, icon: itemListIcon },
-    { id: 1, icon: categoryIcon },
-    { id: 2, icon: addIcon },
-    { id: 3, icon: profileIcon },
+    { id: 0, icon: itemListIcon, link: "/" },
+    { id: 1, icon: categoryIcon, link: "/categories" },
+    { id: 2, icon: addIcon, link: "/newrecipe" },
+    { id: 3, icon: profileIcon, link: "/profile" },
   ];
 
   const onNavigatingHandler = (event) => {
@@ -32,7 +32,7 @@ const NavBar = () => {
       <div className={styles.icons}>
         {navigationButtonsArray.map((button) => {
           return (
-            <Link to="/profile">
+            <Link to={button.link}>
               <img
                 key={button.id}
                 value={button.id}
