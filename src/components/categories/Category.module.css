@@ -1,0 +1,15 @@
+.wrapper {
+  background-color: aliceblue;
+  margin: 1rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin: 2rem;
+  font-size: xx-large;
+  text-transform: uppercase;
+  font-weight: bold;
+}
