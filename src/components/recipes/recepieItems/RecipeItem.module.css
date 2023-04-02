@@ -1,5 +1,5 @@
 .wrapper {
-  width: 50%;
+  width: 30%;
   background-color: aliceblue;
   margin: auto;
   padding: 1rem;
@@ -24,3 +24,8 @@
 .description {
 }
 
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    width: 50%;
+  }
+}

@@ -2,13 +2,55 @@ import styles from "./NavBar.module.css";
 import addIcon from "../../assets/plus.png";
 import profileIcon from "../../assets/profile.png";
 import categoryIcon from "../../assets/category.png";
+import itemListIcon from "../../assets/itemList.png";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const navigationButtonsArray = [
+    { id: 0, icon: itemListIcon },
+    { id: 1, icon: categoryIcon },
+    { id: 2, icon: addIcon },
+    { id: 3, icon: profileIcon },
+  ];
+
+  const onNavigatingHandler = (event) => {
+    setCurrentIndex(event.target.getAttribute("value"));
+  };
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--filler-position",
+      currentIndex * 30 + "%"
+    );
+  }, [currentIndex]);
+
   return (
     <div className={styles.wrapper}>
-      <img src={categoryIcon} className={styles[`action`]} />
-      <img src={addIcon} className={styles[`action`]} />
-      <img src={profileIcon} className={styles[`action`]} />
+      <div className={styles.icons}>
+        {navigationButtonsArray.map((button) => {
+          return (
+            <Link to="/profile">
+              <img
+                key={button.id}
+                value={button.id}
+                onClick={onNavigatingHandler}
+                src={button.icon}
+                className={styles[`action`]}
+              />
+            </Link>
+          );
+        })}
+      </div>
+
+      <div className={styles[`selection-container`]}>
+        <div
+          selection={currentIndex}
+          className={styles[`selection-filler`]}
+        ></div>
+      </div>
     </div>
   );
 };
