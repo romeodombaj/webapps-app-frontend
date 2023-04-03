@@ -3,7 +3,8 @@
   border-radius: 1rem;
   width: 80%;
   margin: auto;
-  height: 65vh;
+  padding: 1em;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.375);
 }
 
 .personal-info-wrapper {
@@ -15,6 +16,8 @@
   margin: auto;
   border-radius: 1rem;
   padding: 1rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.375);
+  margin-bottom: 2rem;
 }
 
 .text {
@@ -25,4 +28,21 @@
   border-radius: 1rem;
   padding: 0.2rem;
   padding-left: 1rem;
+}
+
+.show-recipes-button {
+  background-color: rgb(254, 187, 30);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: auto;
+  opacity: 0.5;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.388);
+  border: 1px solid rgb(208, 153, 24);
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.show-recipes-button:hover {
+  opacity: 1;
 }

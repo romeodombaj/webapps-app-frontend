@@ -26,16 +26,30 @@ const dummy_categories = [
     id: 6,
     name: "perad",
   },
+  {
+    id: 7,
+    name: "perad",
+  },
+  {
+    id: 8,
+    name: "perad",
+  },
+  {
+    id: 9,
+    name: "perad",
+  },
+  {
+    id: 10,
+    name: "perad",
+  },
 ];
 
 const Categories = () => {
   return (
-    <div>
-      <div className={styles[`grid-container`]}>
-        {dummy_categories.map((category) => {
-          return <Category categoryInfo={category} />;
-        })}
-      </div>
+    <div className={styles[`grid-container`]}>
+      {dummy_categories.map((category) => {
+        return <Category categoryInfo={category} />;
+      })}
     </div>
   );
 };

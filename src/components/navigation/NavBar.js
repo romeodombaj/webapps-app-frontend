@@ -4,7 +4,7 @@ import profileIcon from "../../assets/profile.png";
 import categoryIcon from "../../assets/category.png";
 import itemListIcon from "../../assets/itemList.png";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,6 +25,8 @@ const NavBar = () => {
       "--filler-position",
       currentIndex * 30 + "%"
     );
+    //const location = useLocation();
+    //console.log(location.pathname);
   }, [currentIndex]);
 
   return (
@@ -46,10 +48,7 @@ const NavBar = () => {
       </div>
 
       <div className={styles[`selection-container`]}>
-        <div
-          selection={currentIndex}
-          className={styles[`selection-filler`]}
-        ></div>
+        <div className={styles[`selection-filler`]}></div>
       </div>
     </div>
   );
