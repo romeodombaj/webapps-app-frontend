@@ -13,7 +13,7 @@ const FocusRecipe = (props) => {
         className={styles[`back-button`]}
         src={leftArrow}
       ></img>
-      <h1 className={styles.title}> {props.recipeInfo.name} </h1>
+      <h1 className={styles.title}> {props.recipeInfo.title} </h1>
       <h2 className={styles.description}> {props.recipeInfo.description} </h2>
     </div>
   );

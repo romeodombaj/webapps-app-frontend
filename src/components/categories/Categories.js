@@ -48,7 +48,7 @@ const Categories = () => {
   return (
     <div className={styles[`grid-container`]}>
       {dummy_categories.map((category) => {
-        return <Category categoryInfo={category} />;
+        return <Category key={category.id} categoryInfo={category} />;
       })}
     </div>
   );

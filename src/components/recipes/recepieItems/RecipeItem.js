@@ -22,7 +22,7 @@ const RecipeItem = (props) => {
         />
       )}
       <div onClick={focusFullRecipeHandler} className={styles.wrapper}>
-        <div className={styles.title}>{props.recipeInfo.name}</div>
+        <div className={styles.title}>{props.recipeInfo.title}</div>
         <div className={styles.description}>{props.recipeInfo.description}</div>
       </div>
     </Fragment>

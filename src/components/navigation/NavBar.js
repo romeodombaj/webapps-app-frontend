@@ -34,7 +34,7 @@ const NavBar = () => {
       <div className={styles.icons}>
         {navigationButtonsArray.map((button) => {
           return (
-            <Link to={button.link}>
+            <Link key={button.id} to={button.link}>
               <img
                 key={button.id}
                 value={button.id}

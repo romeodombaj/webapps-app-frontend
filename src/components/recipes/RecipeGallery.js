@@ -2,7 +2,7 @@ import styles from "./RecipesGallery.module.css";
 import RecipeItem from "./recepieItems/RecipeItem";
 import leftArrow from "../../assets/leftarrow.png";
 import rightArrow from "../../assets/rightarrow.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const dummy_recipes = [
   {
@@ -27,10 +27,20 @@ const dummy_recipes = [
 
 const RecipesGallery = () => {
   const [recipeIndex, setRecipeIndex] = useState(0);
+  const [recepieList, setRecepieList] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:5000")
+      .then((response) => response.json())
+      .then((data) => {
+        setRecepieList(data);
+      });
+  }, []);
 
   const onNextRecipeHandler = () => {
-    console.log(dummy_recipes.length);
-    if (recipeIndex < dummy_recipes.length - 1) {
+    console.log(recepieList.length);
+    console.log(recepieList[recipeIndex].title);
+    if (recipeIndex < recepieList.length - 1) {
       setRecipeIndex((prevState) => prevState + 1);
     }
   };
@@ -48,7 +58,7 @@ const RecipesGallery = () => {
         className={styles[`navigation-arrows`]}
         src={leftArrow}
       ></img>
-      <RecipeItem recipeInfo={dummy_recipes[recipeIndex]} />
+      {recepieList && <RecipeItem recipeInfo={recepieList[recipeIndex]} />}
       <img
         onClick={onNextRecipeHandler}
         className={styles[`navigation-arrows`]}
