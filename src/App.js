@@ -1,20 +1,15 @@
-import { Fragment } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import NavBar from "./components/navigation/NavBar";
 import RecipesGallery from "./components/recipes/RecipeGallery";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Profile from "./components/profile/Profile";
 import NewRecipe from "./components/new recepie/NewRecipe";
 import Categories from "./components/categories/Categories";
+import backgroundTexture from "./assets/backgroud-nosie.png";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <h1>COOK 'n' RATE</h1>
 
       <Routes>

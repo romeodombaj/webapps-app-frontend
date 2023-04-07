@@ -1,15 +1,24 @@
 .wrapper {
-  background-color: aliceblue;
-  margin: 1rem;
+  background-color: rgba(240, 248, 255, 0.739);
+  margin: auto;
+  margin-bottom: 1rem;
   height: 10rem;
+  width: 10rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.309);
+  transition: 0.3s;
+}
+
+.wrapper:hover {
+  background-color: rgb(240, 248, 255);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.548);
 }
 
 .title {
   margin: 2rem;
-  font-size: xx-large;
+  font-size: x-large;
   text-transform: uppercase;
   font-weight: bold;
 }
