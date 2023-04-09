@@ -1,0 +1,71 @@
+.wrapper {
+  position: absolute;
+  z-index: 100;
+
+  width: 40%;
+  height: 70vh;
+  background-color: bisque;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backdrop {
+  position: absolute;
+  z-index: 90;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.375);
+  top: 0;
+  left: 0;
+}
+
+.action-buttons {
+  position: absolute;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  bottom: 2rem;
+}
+
+button {
+  background-color: rgba(165, 42, 42, 0.648);
+  padding: 1rem;
+  border: 0;
+  border-radius: 1rem;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: large;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: rgb(165, 42, 42);
+}
+
+button:active {
+  background-color: rgba(165, 42, 42, 0.742);
+  scale: 0.95;
+}
+
+@media only screen and (max-width: 900px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  .action-buttons {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .action-buttons {
+    width: 60%;
+  }
+}

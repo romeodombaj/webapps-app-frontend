@@ -3,9 +3,8 @@ import NavBar from "./components/navigation/NavBar";
 import RecipesGallery from "./components/recipes/RecipeGallery";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./components/profile/Profile";
-import NewRecipe from "./components/new recepie/NewRecipe";
+import NewRecipe from "./components/new recipe/NewRecipe";
 import Categories from "./components/categories/Categories";
-import backgroundTexture from "./assets/backgroud-nosie.png";
 
 const App = () => {
   return (

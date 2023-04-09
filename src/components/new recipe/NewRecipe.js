@@ -10,10 +10,16 @@ const NewRecipe = () => {
     setIsAddingNewRecipe(true);
   };
 
+  const closeNewRecipeWindowHandler = () => {
+    setIsAddingNewRecipe(false);
+  };
+
   return (
     <Fragment>
       <h1>NEW RECIPE</h1>
-      {isAddingNewRecipe && <AddNewRecipeWindow />}
+      {isAddingNewRecipe && (
+        <AddNewRecipeWindow onClose={closeNewRecipeWindowHandler} />
+      )}
 
       <div className={styles["wrapper"]}>
         <div className={styles["posted-recipes"]}></div>

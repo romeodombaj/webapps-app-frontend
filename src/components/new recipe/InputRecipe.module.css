@@ -1,0 +1,59 @@
+.wrapper {
+  width: 100%;
+}
+
+.horizontal-label {
+  text-transform: capitalize;
+  font-size: larger;
+  margin-right: 2rem;
+  font-weight: bold;
+}
+
+.vertical-label {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.title-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
+  align-items: center;
+}
+
+.description-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  margin-top: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  background-color: aliceblue;
+  width: 50%;
+  height: 30px;
+  border: 0;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-radius: 0.5rem;
+}
+
+textarea {
+  width: 80%;
+  height: 20vh;
+  resize: none;
+  background-color: aliceblue;
+  border: 0;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-radius: 0.5rem;
+}
