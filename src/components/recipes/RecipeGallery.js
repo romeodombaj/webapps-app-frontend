@@ -30,7 +30,7 @@ const RecipesGallery = () => {
   const [recepieList, setRecepieList] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/")
+    fetch("http://localhost:5000/recipes")
       .then((response) => response.json())
       .then((data) => {
         setRecepieList(data);

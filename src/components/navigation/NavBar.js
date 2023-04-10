@@ -7,7 +7,9 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(
+    localStorage.getItem("navIndex")
+  );
 
   const navigationButtonsArray = [
     { id: 0, icon: itemListIcon, link: "/" },
@@ -25,8 +27,8 @@ const NavBar = () => {
       "--filler-position",
       currentIndex * 30 + "%"
     );
-    //const location = useLocation();
-    //console.log(location.pathname);
+
+    localStorage.setItem("navIndex", currentIndex);
   }, [currentIndex]);
 
   return (

@@ -3,6 +3,8 @@ import styles from "./AddNewRecipeWindow.module.css";
 import InputRecipe from "./InputRecipe";
 
 const AddNewRecipeWindow = (props) => {
+  const username = "BOBI";
+
   const closeWindowHandler = () => {
     props.onClose();
   };
@@ -17,9 +19,9 @@ const AddNewRecipeWindow = (props) => {
         title: "mello",
         description: "jello",
         rating: "0",
-        user: "BOBI",
+        user: username,
       }),
-    });
+    }).then(() => props.fetchData());
 
     closeWindowHandler();
   };
