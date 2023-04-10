@@ -10,7 +10,16 @@ const AddNewRecipeWindow = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    fetch();
+    fetch("http://localhost:5000/new", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "mello",
+        description: "jello",
+        rating: "0",
+        user: "BOBI",
+      }),
+    });
 
     closeWindowHandler();
   };

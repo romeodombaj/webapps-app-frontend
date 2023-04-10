@@ -30,7 +30,7 @@ const RecipesGallery = () => {
   const [recepieList, setRecepieList] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000")
+    fetch("http://localhost:5000/")
       .then((response) => response.json())
       .then((data) => {
         setRecepieList(data);
@@ -38,8 +38,6 @@ const RecipesGallery = () => {
   }, []);
 
   const onNextRecipeHandler = () => {
-    console.log(recepieList.length);
-    console.log(recepieList[recipeIndex].title);
     if (recipeIndex < recepieList.length - 1) {
       setRecipeIndex((prevState) => prevState + 1);
     }
