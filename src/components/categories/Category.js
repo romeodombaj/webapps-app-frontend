@@ -2,7 +2,7 @@ import styles from "./Category.module.css";
 
 const Category = (props) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} onClick={props.onCategoryClick}>
       <div className={styles.title}>{props.categoryInfo}</div>
     </div>
   );

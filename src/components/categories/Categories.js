@@ -1,9 +1,16 @@
 import styles from "./Categories.module.css";
 import Category from "./Category";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router";
 
 const Categories = () => {
   const [categoryList, setCategoryList] = useState();
+
+  const navigate = useNavigate();
+
+  const routeToCategoryRecipes = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/recipes/category-list")
@@ -17,7 +24,13 @@ const Categories = () => {
     <div className={styles[`grid-container`]}>
       {categoryList &&
         categoryList.map((category) => {
-          return <Category key={category} categoryInfo={category} />;
+          return (
+            <Category
+              onCategoryClick={routeToCategoryRecipes}
+              key={category}
+              categoryInfo={category}
+            />
+          );
           //return <Category />;
         })}
     </div>
