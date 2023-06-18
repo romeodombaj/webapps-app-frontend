@@ -1,9 +1,48 @@
 .wrapper {
-  background-color: aqua;
+  position: relative;
+  background-color: rgb(173, 205, 191);
   margin-bottom: 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.433);
+  transition: 0.3s;
+}
+
+.wrapper:hover {
+  background-color: rgb(212, 219, 205);
+}
+
+.actions-wrapper {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.action-symbol {
+  height: 1.4rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.action-symbol:hover {
+  scale: 1.1;
+}
+
+.name {
+  font-size: 2em;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.description {
+  font-style: italic;
+  color: rgb(62, 62, 62);
+}
+
+.rating {
+  margin-top: 2rem;
 }

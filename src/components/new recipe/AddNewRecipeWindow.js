@@ -9,17 +9,12 @@ const AddNewRecipeWindow = (props) => {
     props.onClose();
   };
 
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-
+  const postDataHandler = (data) => {
     fetch("http://localhost:5000/new", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        title: "mello",
-        description: "jello",
-        rating: "0",
-        user: username,
+        data,
       }),
     }).then(() => props.fetchData());
 
@@ -27,16 +22,9 @@ const AddNewRecipeWindow = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
-      <div onClick={closeWindowHandler} className={styles.backdrop} />
-      <div className={styles.wrapper}>
-        <InputRecipe />
-        <div className={styles[`action-buttons`]}>
-          <button type="submit">SUBMIT</button>
-          <button onClick={closeWindowHandler}>CANCEL</button>
-        </div>
-      </div>
-    </form>
+    <Fragment>
+      <InputRecipe onClose={closeWindowHandler} handleData={postDataHandler} />
+    </Fragment>
   );
 };
 

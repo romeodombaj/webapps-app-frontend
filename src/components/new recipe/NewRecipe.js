@@ -3,7 +3,6 @@ import styles from "./NewRecipe.module.css";
 import addIcon from "../../assets/plus.png";
 import AddNewRecipeWindow from "./AddNewRecipeWindow";
 import PostedRecipe from "./posted recipes/PostedRecipe";
-import { renderIntoDocument } from "react-dom/test-utils";
 
 const NewRecipe = () => {
   const [isAddingNewRecipe, setIsAddingNewRecipe] = useState(false);
@@ -19,7 +18,8 @@ const NewRecipe = () => {
     setIsAddingNewRecipe(false);
   };
 
-  const fetchUserPostsHandler = () => {
+  const fetchHandler = () => {
+    console.log("fetching");
     fetch(`http://localhost:5000/recipes/${username}`)
       .then((response) => response.json())
       .then((data) => {
@@ -28,14 +28,14 @@ const NewRecipe = () => {
   };
 
   useEffect(() => {
-    fetchUserPostsHandler();
+    fetchHandler();
   }, []);
 
   return (
     <Fragment>
       {isAddingNewRecipe && (
         <AddNewRecipeWindow
-          fetchData={fetchUserPostsHandler}
+          fetchData={fetchHandler}
           onClose={closeNewRecipeWindowHandler}
         />
       )}
@@ -47,6 +47,8 @@ const NewRecipe = () => {
               recipeList.map((recipe) => {
                 return (
                   <PostedRecipe
+                    onEdit={openNewRecipeWindowHandler}
+                    fetchData={fetchHandler}
                     key={recipe._id}
                     recipeInfo={recipe}
                   ></PostedRecipe>
