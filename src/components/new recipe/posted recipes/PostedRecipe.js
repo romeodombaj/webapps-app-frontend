@@ -1,40 +1,64 @@
 import styles from "./PostedRecipe.module.css";
+import { useState } from "react";
 
 //images
 
 import editSymbol from "../../../assets/edit_symbol.png";
 import deleteSymbol from "../../../assets/delete_symbol.png";
+import { Fragment } from "react";
+import InputRecipe from "../InputRecipe";
 
 const PostedRecipe = (props) => {
+  const [isUpdating, setIsUpdating] = useState(false);
+
   const onEditHandler = () => {
-    props.onEditHandler();
+    setIsUpdating(true);
+  };
+
+  const onUpdateHandler = (data) => {
+    fetch(`http://localhost:5000/recipes/patch/${props.recipeInfo._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+      }),
+    }).then(() => props.fetchData());
+    setIsUpdating(false);
   };
 
   const onDeleteHandler = (e) => {
-    const postId = e.currentTarget.getAttribute("value");
-    console.log(postId);
-    fetch(`http://localhost:5000/recipes/delete/${postId}`, {
+    fetch(`http://localhost:5000/recipes/delete/${props.recipeInfo._id}`, {
       method: "delete",
     }).then(() => props.fetchData());
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles[`info-wrapper`]}>
-        <div className={styles.name}>{props.recipeInfo.name}</div>
-        <div className={styles.description}>{props.recipeInfo.description}</div>
-        <div className={styles.rating}>{props.recipeInfo.rating}</div>
+    <Fragment>
+      {isUpdating && (
+        <InputRecipe handleData={onUpdateHandler} info={props.recipeInfo} />
+      )}
+      <div className={styles.wrapper}>
+        <div className={styles[`info-wrapper`]}>
+          <div className={styles.name}>{props.recipeInfo.name}</div>
+          <div className={styles.description}>
+            {props.recipeInfo.description}
+          </div>
+          <div className={styles.rating}>{props.recipeInfo.rating}</div>
+        </div>
+        <div className={styles[`actions-wrapper`]}>
+          <img
+            className={styles[`action-symbol`]}
+            src={editSymbol}
+            onClick={onEditHandler}
+          />
+          <img
+            className={styles[`action-symbol`]}
+            src={deleteSymbol}
+            onClick={onDeleteHandler}
+          />
+        </div>
       </div>
-      <div className={styles[`actions-wrapper`]}>
-        <img className={styles[`action-symbol`]} src={editSymbol} />
-        <img
-          className={styles[`action-symbol`]}
-          src={deleteSymbol}
-          value={props.recipeInfo._id}
-          onClick={onDeleteHandler}
-        />
-      </div>
-    </div>
+    </Fragment>
   );
 };
 

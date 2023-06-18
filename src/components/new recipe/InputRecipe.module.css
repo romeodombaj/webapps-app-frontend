@@ -79,6 +79,7 @@ button:active {
   font-size: larger;
   margin-right: 2rem;
   font-weight: bold;
+  width: 4rem;
 }
 
 .vertical-label {

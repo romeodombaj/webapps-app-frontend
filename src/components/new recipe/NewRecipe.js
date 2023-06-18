@@ -44,7 +44,7 @@ const NewRecipe = () => {
         <div className={styles[`posted-recipes-wrapper`]}>
           <div className={styles["posted-recipes"]}>
             {recipeList &&
-              recipeList.map((recipe) => {
+              [...recipeList].reverse().map((recipe) => {
                 return (
                   <PostedRecipe
                     onEdit={openNewRecipeWindowHandler}

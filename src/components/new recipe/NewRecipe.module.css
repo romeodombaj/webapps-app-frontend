@@ -5,9 +5,9 @@
 }
 
 .posted-recipes-wrapper {
-  background-color: aliceblue;
+  background-color: white;
   width: 70%;
-  height: 70vh;
+  height: 65vh;
   margin: auto;
   margin-right: 1rem;
   border-radius: 2.5rem;
@@ -15,13 +15,14 @@
 }
 
 .posted-recipes {
-  background-color: aliceblue;
   width: 100%;
-  height: 70vh;
+  height: 65vh;
   margin-right: 1rem;
   border-radius: 2rem;
   overflow: scroll;
   scroll-margin: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .posted-recipes::-webkit-scrollbar {
