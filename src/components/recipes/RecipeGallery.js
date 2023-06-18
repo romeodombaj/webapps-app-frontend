@@ -3,6 +3,7 @@ import RecipeItem from "./recepieItems/RecipeItem";
 import leftArrow from "../../assets/leftarrow.png";
 import rightArrow from "../../assets/rightarrow.png";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 
 const dummy_recipes = [
   {
@@ -27,20 +28,24 @@ const dummy_recipes = [
 
 const RecipesGallery = () => {
   const [recipeIndex, setRecipeIndex] = useState(0);
-  const [recepieList, setRecepieList] = useState();
+  const [recipeList, setRecipeList] = useState();
+  const location = useLocation().state;
 
   useEffect(() => {
-    fetch("http://localhost:5000/recipes/category-list/Chicken")
+    let catString;
+    location ? (catString = location.catString) : (catString = "");
+    fetch(`http://localhost:5000/recipes/${catString}`)
       .then((response) => response.json())
       .then((data) => {
-        setRecepieList(data);
+        setRecipeList(data);
       });
-  }, []);
+  }, [location]);
 
   const onNextRecipeHandler = () => {
-    if (recipeIndex < recepieList.length - 1) {
+    if (recipeIndex < recipeList.length - 1) {
       setRecipeIndex((prevState) => prevState + 1);
     }
+    console.log(recipeList);
   };
 
   const onPreviousRecipeHandler = () => {
@@ -55,8 +60,9 @@ const RecipesGallery = () => {
         onClick={onPreviousRecipeHandler}
         className={styles[`navigation-arrows`]}
         src={leftArrow}
-      ></img>
-      {recepieList && <RecipeItem recipeInfo={recepieList[recipeIndex]} />}
+      />
+
+      {recipeList && <RecipeItem recipeInfo={recipeList[recipeIndex]} />}
       <img
         onClick={onNextRecipeHandler}
         className={styles[`navigation-arrows`]}

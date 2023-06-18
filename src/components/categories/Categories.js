@@ -8,8 +8,8 @@ const Categories = () => {
 
   const navigate = useNavigate();
 
-  const routeToCategoryRecipes = () => {
-    navigate("/");
+  const routeToCategoryRecipes = (category) => {
+    navigate("/", { state: { catString: `category-list/${category}` } });
   };
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const Categories = () => {
             <Category
               onCategoryClick={routeToCategoryRecipes}
               key={category}
+              value={category}
               categoryInfo={category}
             />
           );
