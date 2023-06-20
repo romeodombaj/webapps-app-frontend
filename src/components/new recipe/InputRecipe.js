@@ -26,7 +26,6 @@ const InputRecipe = (props) => {
         name: name,
         description: description,
         category: category,
-        rating: [],
         user: "BOBI",
       };
 

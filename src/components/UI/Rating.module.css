@@ -1,0 +1,22 @@
+.wrapper {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.star {
+  height: 2rem;
+  transition: 0.3s;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  filter: grayscale(100%);
+}
+
+.isActive {
+  filter: grayscale(0);
+  scale: 1.2;
+}
