@@ -3,10 +3,14 @@ import addIcon from "../../assets/plus.png";
 import profileIcon from "../../assets/profile.png";
 import categoryIcon from "../../assets/category.png";
 import itemListIcon from "../../assets/itemList.png";
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useContext, Fragment } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../store/user-context";
 
 const NavBar = () => {
+  const userCtx = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [currentIndex, setCurrentIndex] = useState(
     localStorage.getItem("navIndex")
   );
@@ -22,6 +26,11 @@ const NavBar = () => {
     setCurrentIndex(event.target.getAttribute("value"));
   };
 
+  const logoutHandler = () => {
+    userCtx.setLoginStatus(false);
+    navigate("/signup");
+  };
+
   useEffect(() => {
     document.documentElement.style.setProperty(
       "--filler-position",
@@ -32,27 +41,32 @@ const NavBar = () => {
   }, [currentIndex]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.icons}>
-        {navigationButtonsArray.map((button) => {
-          return (
-            <Link key={button.id} to={button.link}>
-              <img
-                key={button.id}
-                value={button.id}
-                onClick={onNavigatingHandler}
-                src={button.icon}
-                className={styles[`action`]}
-              />
-            </Link>
-          );
-        })}
+    <Fragment>
+      <div className={styles.logout} onClick={logoutHandler}>
+        Log Out
       </div>
+      <div className={styles.wrapper}>
+        <div className={styles.icons}>
+          {navigationButtonsArray.map((button) => {
+            return (
+              <Link key={button.id} to={button.link}>
+                <img
+                  key={button.id}
+                  value={button.id}
+                  onClick={onNavigatingHandler}
+                  src={button.icon}
+                  className={styles[`action`]}
+                />
+              </Link>
+            );
+          })}
+        </div>
 
-      <div className={styles[`selection-container`]}>
-        <div className={styles[`selection-filler`]}></div>
+        <div className={styles[`selection-container`]}>
+          <div className={styles[`selection-filler`]}></div>
+        </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

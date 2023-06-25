@@ -1,0 +1,16 @@
+.option {
+  margin: auto;
+  width: 30%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(250, 235, 215, 0.522);
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option:hover {
+  background-color: antiquewhite;
+}

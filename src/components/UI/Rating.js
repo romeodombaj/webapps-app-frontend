@@ -56,17 +56,13 @@ const Rating = (props) => {
   };
 
   const lockStars = (e) => {
-    console.log("lock");
     const index = e.currentTarget.getAttribute("value");
     setLockIndex(parseInt(index));
   };
 
   useEffect(() => {
-    console.log("CHIk");
-
     if (props.value) {
-      setLockIndex(3);
-      console.log("hello");
+      setLockIndex(props.value);
       starActivation(false, 0, 4);
       starActivation(true, 0, props.value);
     }
