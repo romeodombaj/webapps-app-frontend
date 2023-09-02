@@ -15,10 +15,18 @@ const SignUpForm = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    props.onSub(data);
   };
 
   return (
     <form onSubmit={onSubmitHandler} className={styles.wrapper}>
+      {props.error && <div>{props.error}</div>}
       <div className={styles.property}>
         <div>Username</div>
         <input

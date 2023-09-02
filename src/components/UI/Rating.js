@@ -91,7 +91,7 @@ const Rating = (props) => {
               key={i}
               className={`${styles.star} ${
                 styles[`${item.active ? `isActive` : null}`]
-              }`}
+              } ${!props.static && styles.clickable}`}
               src={item.img}
             />
           );

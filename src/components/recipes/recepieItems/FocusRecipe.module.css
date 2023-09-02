@@ -1,33 +1,87 @@
 .wrapper {
   position: fixed;
   width: 100%;
-  height: 100vh;
   top: 0;
   right: 0;
   background-color: rgb(255, 249, 238);
   z-index: 100;
   animation: slide-in 0.2s ease-out;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 45vh;
+  object-fit: cover;
+  border-radius: 0 0 20% 20%;
+  transition: 1s;
+}
+
+.image:hover {
+  height: 60vh;
+  cursor: pointer;
+}
+
+.info-wrapper {
+  position: relative;
+  width: 40%;
+  background-color: white;
+  height: fit-content;
+  margin: auto;
+  animation: slide-up 0.7s forwards;
+  border-radius: 2rem;
+  padding: 2rem;
+  padding-bottom: 6rem;
 }
 
 .title {
   margin: 2rem;
   text-transform: capitalize;
+  width: 90%;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.category {
+  text-align: left;
+  margin: auto;
+  width: 90%;
+  margin-top: 5rem;
+  font-style: italic;
 }
 
 .description {
-  margin: 4rem;
+  margin: auto;
+  margin-top: 4rem;
+  width: 80%;
+  text-align: left;
+  margin-bottom: 7rem;
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
 .back-button {
-  position: fixed;
+  position: absolute;
   height: 50px;
-  left: 0;
+  left: 20%;
   margin: 2rem;
+  top: 45vh;
   transition: 0.2s;
+  cursor: pointer;
+  z-index: 110;
+  padding: 2rem;
 }
 
 .back-button:active {
   scale: 0.7;
+}
+
+.label-rating {
+  font-weight: bold;
 }
 
 @keyframes slide-in {
@@ -36,5 +90,25 @@
   }
   to {
     top: -0;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(-20vh);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .info-wrapper {
+    width: calc(90% - 4rem);
+  }
+
+  .back-button {
+    top: 25vh;
+    left: 3%;
   }
 }

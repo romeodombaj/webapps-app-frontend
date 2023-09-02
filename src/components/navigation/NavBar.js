@@ -7,6 +7,13 @@ import { useState, useEffect, useContext, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../store/user-context";
 
+const navigationButtonArray = [
+  { id: 0, icon: itemListIcon, link: "/" },
+  { id: 1, icon: categoryIcon, link: "/categories" },
+  { id: 2, icon: addIcon, link: "/newrecipe" },
+  { id: 3, icon: profileIcon, link: "/profile" },
+];
+
 const NavBar = () => {
   const userCtx = useContext(UserContext);
   const navigate = useNavigate();
@@ -14,13 +21,6 @@ const NavBar = () => {
   const [currentIndex, setCurrentIndex] = useState(
     localStorage.getItem("navIndex")
   );
-
-  const navigationButtonsArray = [
-    { id: 0, icon: itemListIcon, link: "/" },
-    { id: 1, icon: categoryIcon, link: "/categories" },
-    { id: 2, icon: addIcon, link: "/newrecipe" },
-    { id: 3, icon: profileIcon, link: "/profile" },
-  ];
 
   const onNavigatingHandler = (event) => {
     setCurrentIndex(event.target.getAttribute("value"));
@@ -47,7 +47,7 @@ const NavBar = () => {
       </div>
       <div className={styles.wrapper}>
         <div className={styles.icons}>
-          {navigationButtonsArray.map((button) => {
+          {navigationButtonArray.map((button) => {
             return (
               <Link key={button.id} to={button.link}>
                 <img

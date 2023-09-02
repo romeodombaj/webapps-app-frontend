@@ -20,3 +20,7 @@
   filter: grayscale(0);
   scale: 1.2;
 }
+
+.clickable {
+  cursor: pointer;
+}

@@ -9,6 +9,7 @@ import SignUp from "./components/auth/SignUp";
 import { Navigate } from "react-router-dom";
 import UserContext from "./components/store/user-context";
 import { useContext } from "react";
+import RecipeItem from "./components/recipes/recepieItems/RecipeItem";
 
 const App = () => {
   const userCtx = useContext(UserContext);
@@ -18,7 +19,7 @@ const App = () => {
       <h1>COOK 'n' RATE</h1>
 
       <Routes>
-        <Route path="/" element={<RecipesGallery />}></Route>
+        <Route path="/" element={<RecipesGallery />} />
         <Route path="/categories" element={<Categories />}></Route>
         <Route path="/newrecipe" element={<NewRecipe />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
