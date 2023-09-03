@@ -1,5 +1,5 @@
 import styles from "./RecipeItem.module.css";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import FocusRecipe from "./FocusRecipe";
 import Rating from "../../UI/Rating";
 
@@ -18,6 +18,13 @@ const RecipeItem = (props) => {
     setIsFocued(false);
   };
 
+  const averageRating = () => {
+    let array = recipe.rating.map((el) => el.rating);
+    let average = array.reduce((a, b) => a + b, 0) / array.length;
+
+    return average;
+  };
+
   return (
     <Fragment>
       {isFocused && (
@@ -31,7 +38,7 @@ const RecipeItem = (props) => {
           <div className={styles.description}>
             {recipe.description.substring(0, 150)} ...
           </div>
-          <Rating static={true} value={recipe.rating - 1} />
+          {recipe && <Rating static={true} value={averageRating()} />}
         </div>
       )}
     </Fragment>

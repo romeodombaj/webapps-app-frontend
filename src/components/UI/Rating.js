@@ -1,5 +1,7 @@
 import styles from "./Rating.module.css";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import UserContext from "../store/user-context";
 
 //images
 import star from "../../assets/star_symbol.png";
@@ -30,6 +32,7 @@ const stars = [
 const Rating = (props) => {
   const [starList, setStarList] = useState(stars);
   const [lockIndex, setLockIndex] = useState(-1);
+  const userCtx = useContext(UserContext);
 
   const starActivation = (stat, start, end) => {
     let tempList = starList;
@@ -58,21 +61,40 @@ const Rating = (props) => {
   const lockStars = (e) => {
     const index = e.currentTarget.getAttribute("value");
     setLockIndex(parseInt(index));
-    patchRating();
+    patchRating(parseInt(index));
   };
 
-  const patchRating = () => {
+  const patchRating = (rating) => {
+    const id = props.data._id;
+    const userId = userCtx.userData._id;
+    let ratings = props.data.rating;
+
+    if (ratings.some((el) => el.userId === userId)) {
+      const index = ratings.findIndex((el) => el.userId === userId);
+      ratings[index].rating = rating;
+    } else {
+      ratings.push({
+        userId,
+        rating,
+      });
+    }
+
     const data = {
-      ...props.data,
+      name: props.data.name,
+      description: props.data.description,
+      category: props.data.category,
+      user: props.data.user,
+      image: props.data.image,
+      rating: ratings,
     };
 
-    fetch(`http://localhost:5000/recipes/patch/${props.recipeId}`, {
+    fetch(`http://localhost:5000/recipes/patch/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...data,
       }),
-    }).then(() => props.fetchData());
+    });
   };
 
   useEffect(() => {

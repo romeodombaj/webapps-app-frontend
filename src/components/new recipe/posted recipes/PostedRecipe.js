@@ -7,6 +7,7 @@ import editSymbol from "../../../assets/edit_symbol.png";
 import deleteSymbol from "../../../assets/delete_symbol.png";
 import { Fragment } from "react";
 import InputRecipe from "../InputRecipe";
+import Rating from "../../UI/Rating";
 
 const PostedRecipe = (props) => {
   const [isUpdating, setIsUpdating] = useState(false);
@@ -43,7 +44,6 @@ const PostedRecipe = (props) => {
           <div className={styles.description}>
             {props.recipeInfo.description}
           </div>
-          <div className={styles.rating}>{props.recipeInfo.rating}</div>
         </div>
         <div className={styles[`actions-wrapper`]}>
           <img

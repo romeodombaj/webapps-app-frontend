@@ -49,14 +49,14 @@ const NewRecipe = () => {
             <div className={styles[`posted-recipes-wrapper`]}>
               <div className={styles["posted-recipes"]}>
                 {recipeList &&
-                  [...recipeList].reverse().map((recipe) => {
+                  recipeList.reverse().map((recipe) => {
                     return (
                       <PostedRecipe
                         onEdit={openNewRecipeWindowHandler}
                         fetchData={fetchHandler}
                         key={recipe._id}
                         recipeInfo={recipe}
-                      ></PostedRecipe>
+                      />
                     );
                   })}
               </div>
