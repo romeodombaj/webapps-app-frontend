@@ -45,7 +45,6 @@ const RecipesGallery = () => {
     if (recipeIndex < recipeList.length - 1) {
       setRecipeIndex((prevState) => prevState + 1);
     }
-    console.log(recipeList);
   };
 
   const onPreviousRecipeHandler = () => {

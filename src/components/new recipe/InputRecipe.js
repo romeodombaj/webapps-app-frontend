@@ -3,6 +3,8 @@ import styles from "./InputRecipe.module.css";
 import UserContext from "../store/user-context";
 import Error from "../UI/Error";
 
+import defaultImg from "../../assets/default_recipe_image.png";
+
 const InputRecipe = (props) => {
   const editName = props.info ? props.info.name : "";
   const editDescription = props.info ? props.info.description : "";
@@ -13,10 +15,13 @@ const InputRecipe = (props) => {
   const [name, setName] = useState(editName);
   const [description, setDescription] = useState(editDescription);
   const [category, setCategory] = useState(editCategory);
+  const [image, setImage] = useState();
   const [error, setError] = useState("");
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
+    const reader = new FileReader();
+    let data = {};
 
     if (
       name.length < 30 &&
@@ -26,15 +31,32 @@ const InputRecipe = (props) => {
       description.length < 1000 &&
       description.length > 0
     ) {
-      const data = {
-        name: name,
-        description: description,
-        category: category,
-        user: userCtx.userData.username,
-      };
-      setError("");
+      if (image) {
+        reader.readAsDataURL(image);
+        reader.onload = () => {
+          data = {
+            name: name,
+            description: description,
+            category: category,
+            user: userCtx.userData.username,
+            image: reader.result,
+          };
 
-      props.handleData(data);
+          setError("");
+          props.handleData(data);
+        };
+      } else {
+        data = {
+          name: name,
+          description: description,
+          category: category,
+          user: userCtx.userData.username,
+          image: defaultImg,
+        };
+
+        setError("");
+        props.handleData(data);
+      }
     } else {
       setError("Error");
     }
@@ -50,6 +72,10 @@ const InputRecipe = (props) => {
 
   const onCategoryUpdate = (e) => {
     setCategory(e.target.value);
+  };
+
+  const onImageUpdate = (e) => {
+    setImage(e.target.files[0]);
   };
 
   return (
@@ -74,6 +100,11 @@ const InputRecipe = (props) => {
               <textarea onChange={onDescriptionUpdate} value={description} />
             </div>
           </div>
+          <input
+            type="file"
+            onChange={onImageUpdate}
+            className={styles["image-select"]}
+          />
           <div className={styles[`action-buttons`]}>
             <button type="submit">SUBMIT</button>
             <button onClick={props.onClose}>CANCEL</button>

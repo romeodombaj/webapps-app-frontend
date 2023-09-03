@@ -58,6 +58,21 @@ const Rating = (props) => {
   const lockStars = (e) => {
     const index = e.currentTarget.getAttribute("value");
     setLockIndex(parseInt(index));
+    patchRating();
+  };
+
+  const patchRating = () => {
+    const data = {
+      ...props.data,
+    };
+
+    fetch(`http://localhost:5000/recipes/patch/${props.recipeId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+      }),
+    }).then(() => props.fetchData());
   };
 
   useEffect(() => {
