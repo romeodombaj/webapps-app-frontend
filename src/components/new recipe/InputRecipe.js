@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState, useContext } from "react";
 import styles from "./InputRecipe.module.css";
 import UserContext from "../store/user-context";
+import Error from "../UI/Error";
 
 const InputRecipe = (props) => {
   const editName = props.info ? props.info.name : "";
@@ -56,7 +57,7 @@ const InputRecipe = (props) => {
       <div onClick={props.onClose} className={styles.backdrop} />
       <form onSubmit={onSubmitHandler}>
         <div className={styles.wrapper}>
-          {error != "" && <div className={styles.error}>{error}</div>}
+          <Error error={error} />
           <div className={styles[`form-wrapper`]}>
             <div className={styles[`title-input-wrapper`]}>
               <div className={styles[`horizontal-label`]}>title</div>

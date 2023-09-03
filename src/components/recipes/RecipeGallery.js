@@ -56,18 +56,21 @@ const RecipesGallery = () => {
 
   return (
     <div className={styles.wrapper}>
-      <img
-        onClick={onPreviousRecipeHandler}
-        className={styles[`navigation-arrows`]}
-        src={leftArrow}
-      />
+      <div className={styles[`navigation-arrows`]}>
+        <img
+          className={styles["left-arrow"]}
+          onClick={onPreviousRecipeHandler}
+          src={leftArrow}
+        />
+
+        <img
+          onClick={onNextRecipeHandler}
+          className={styles[`right-arrow`]}
+          src={rightArrow}
+        ></img>
+      </div>
 
       {recipeList && <RecipeItem recipeInfo={recipeList[recipeIndex]} />}
-      <img
-        onClick={onNextRecipeHandler}
-        className={styles[`navigation-arrows`]}
-        src={rightArrow}
-      ></img>
     </div>
   );
 };

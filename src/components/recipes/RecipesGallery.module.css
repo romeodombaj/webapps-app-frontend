@@ -7,11 +7,39 @@
 }
 
 .navigation-arrows {
-  width: 10%;
-  margin: 2rem;
+  position: absolute;
+  width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.left-arrow {
+  height: 8vh;
   transition: 0.2s;
 }
 
-.navigation-arrows:active {
+.right-arrow {
+  height: 8vh;
+  transition: 0.2s;
+}
+
+.left-arrow:active {
   scale: 0.7;
+}
+
+.right-arrow:active {
+  scale: 0.7;
+}
+
+@media only screen and (max-width: 768px) {
+  .navigation-arrows {
+    top: 70vh;
+  }
 }

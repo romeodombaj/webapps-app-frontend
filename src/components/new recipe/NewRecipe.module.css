@@ -38,3 +38,27 @@
   padding: 2rem;
   border-radius: 2rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .add-button {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    padding: 2rem 30%;
+  }
+
+  .posted-recipes-wrapper {
+    height: 60vh;
+    margin: 0;
+    width: 80%;
+  }
+
+  .posted-recipes {
+    height: 60vh;
+  }
+}

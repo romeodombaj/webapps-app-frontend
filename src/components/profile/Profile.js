@@ -23,10 +23,18 @@ const Profile = () => {
       ) : (
         <Fragment>
           <div className={styles[`personal-info-wrapper`]}>
-            <div className={styles.text}>Name: {dummy_profile.name}</div>
-            <div className={styles.text}>Surname: {dummy_profile.surname}</div>
-            <div className={styles.text}>Age: {dummy_profile.age}</div>
-            <div className={styles.text}>Username: {user.username}</div>
+            <div className={styles.text}>
+              <strong>Name:</strong> {user.name}
+            </div>
+            <div className={styles.text}>
+              <strong>Surname:</strong> {user.surname}
+            </div>
+            <div className={styles.text}>
+              <strong>Age:</strong> {user.age}
+            </div>
+            <div className={styles.text}>
+              <strong>Username:</strong> {user.username}
+            </div>
           </div>
           <div className={styles[`personal-info-wrapper`]}>
             <Link to="/newrecipe" className={styles[`show-recipes-button`]}>

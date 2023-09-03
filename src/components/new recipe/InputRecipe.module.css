@@ -131,17 +131,7 @@ textarea {
   border-radius: 0.5rem;
 }
 
-.error {
-  width: 80%;
-  background-color: red;
-  color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  font-weight: bold;
-  font-size: 1.5em;
-  font-style: italic;
-  animation: slide-in 0.5s;
-}
+
 
 @keyframes slide-in {
   0% {

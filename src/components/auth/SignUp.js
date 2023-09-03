@@ -11,17 +11,17 @@ const SignUp = () => {
 
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
 
   const isLoggingInHandler = () => {
     setIsLoggingIn(true);
     setIsRegistering(false);
-    setError();
+    setError("");
   };
   const isRegisteringHandler = () => {
     setIsLoggingIn(false);
     setIsRegistering(true);
-    setError();
+    setError("");
   };
 
   const guestLogin = () => {
@@ -37,8 +37,7 @@ const SignUp = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: data.username,
-        password: data.password,
+        ...data,
       }),
     }).then((response) => {
       if (response.ok) {
@@ -46,6 +45,7 @@ const SignUp = () => {
           userCtx.setLoginStatus(true);
           userCtx.setUser(resp);
           navigate("/");
+          setError("");
           return true;
         });
       } else {

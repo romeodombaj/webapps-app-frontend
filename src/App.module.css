@@ -25,3 +25,11 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+@media only screen and (max-width: 768px) {
+  .title {
+    text-align: left;
+    width: 90%;
+    margin-left: auto;
+  }
+}

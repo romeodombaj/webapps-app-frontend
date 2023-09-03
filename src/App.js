@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <div className={styles.App}>
-      <h1>COOK 'n' RATE</h1>
+      <h1 className={styles.title}>COOK 'n' RATE</h1>
 
       <Routes>
         <Route path="/" element={<RecipesGallery />} />
