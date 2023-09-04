@@ -65,7 +65,10 @@ const RecipesGallery = () => {
   useEffect(() => {
     if (searchValue != "") {
       setFilteredRecipeList(
-        recipeList.filter((el) => el.name.includes(searchValue))
+        recipeList.filter(
+          (el) =>
+            el.name.includes(searchValue) || el.category.includes(searchValue)
+        )
       );
       setRecipeIndex(0);
     } else {

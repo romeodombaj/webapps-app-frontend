@@ -2,13 +2,13 @@ import styles from "./RecipeItem.module.css";
 import { Fragment, useEffect, useState } from "react";
 import FocusRecipe from "./FocusRecipe";
 import Rating from "../../UI/Rating";
+import { useContext } from "react";
+import UserContext from "../../store/user-context";
 
-import defaultImage from "../../../assets/default_recipe_image.png";
 
 const RecipeItem = (props) => {
+  const recipe = props.recipeInfo;
   const [isFocused, setIsFocued] = useState(false);
-
-  let recipe = props.recipeInfo;
 
   const focusFullRecipeHandler = () => {
     setIsFocued(true);
@@ -17,6 +17,8 @@ const RecipeItem = (props) => {
   const unfocusFullRecipeHandler = () => {
     setIsFocued(false);
   };
+
+
 
   const averageRating = () => {
     let array = recipe.rating.map((el) => el.rating);
@@ -38,6 +40,9 @@ const RecipeItem = (props) => {
           <div className={styles.description}>
             {recipe.description.substring(0, 150)} ...
           </div>
+
+
+
           {recipe && <Rating static={true} value={averageRating()} />}
         </div>
       )}

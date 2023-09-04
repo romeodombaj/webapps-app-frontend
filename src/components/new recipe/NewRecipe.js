@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import styles from "./NewRecipe.module.css";
 import addIcon from "../../assets/plus.png";
+import saveIcon from "../../assets/save_icon.png";
 import AddNewRecipeWindow from "./AddNewRecipeWindow";
 import PostedRecipe from "./posted recipes/PostedRecipe";
 import UserContext from "../store/user-context";
@@ -8,9 +9,10 @@ import UserContext from "../store/user-context";
 const NewRecipe = () => {
   const [isAddingNewRecipe, setIsAddingNewRecipe] = useState(false);
   const [recipeList, setRecepieList] = useState();
+  const [savedRecipeList, setSavedRecipeList] = useState();
+  const [isShowingSaved, setIsShowingSaved] = useState(false);
 
   const userCtx = useContext(UserContext);
-  const username = "BOBI";
 
   const openNewRecipeWindowHandler = () => {
     setIsAddingNewRecipe(true);
@@ -18,6 +20,11 @@ const NewRecipe = () => {
 
   const closeNewRecipeWindowHandler = () => {
     setIsAddingNewRecipe(false);
+  };
+
+  const toggleSaved = () => {
+    setIsShowingSaved((prevVal) => !prevVal);
+    console.log(savedRecipeList);
   };
 
   const fetchHandler = () => {
@@ -28,8 +35,19 @@ const NewRecipe = () => {
       });
   };
 
+  const fetchSavedHandler = () => {
+    fetch(`http://localhost:5000/recipes/`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(userCtx.userData.saved);
+        setSavedRecipeList();
+        //data.filter((el) => userCtx.userData.saved.includes(el._id))
+      });
+  };
+
   useEffect(() => {
     fetchHandler();
+    fetchSavedHandler();
   }, []);
 
   return (
@@ -61,11 +79,20 @@ const NewRecipe = () => {
                   })}
               </div>
             </div>
-            <img
-              onClick={openNewRecipeWindowHandler}
-              src={addIcon}
-              className={styles["add-button"]}
-            />
+            <div className={styles["button-wrapper"]}>
+              <img
+                onClick={openNewRecipeWindowHandler}
+                src={addIcon}
+                className={styles["add-button"]}
+              />
+              <img
+                onClick={toggleSaved}
+                src={saveIcon}
+                className={`${styles["save-button"]} ${
+                  styles[isShowingSaved && "save-button-active"]
+                }`}
+              />
+            </div>
           </div>
         </Fragment>
       )}
