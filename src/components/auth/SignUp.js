@@ -41,13 +41,19 @@ const SignUp = () => {
       }),
     }).then((response) => {
       if (response.ok) {
-        response.json().then((resp) => {
-          userCtx.setLoginStatus(true);
-          userCtx.setUser(resp);
-          navigate("/");
-          setError("");
-          return true;
-        });
+        if (mode === "login") {
+          response.json().then((resp) => {
+            userCtx.setUser(resp.user);
+            userCtx.setLoginStatus(true);
+            userCtx.setToken(resp.token);
+
+            navigate("/");
+            setError("");
+            return true;
+          });
+        } else {
+          request("login", data);
+        }
       } else {
         setError("Error");
         return false;

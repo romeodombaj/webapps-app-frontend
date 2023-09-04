@@ -8,6 +8,7 @@ const UserProvider = (props) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(localData);
   const [userData, setUserData] = useState(localUserData);
+  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,9 +33,11 @@ const UserProvider = (props) => {
 
   const userContext = {
     isLoggedIn: isLoggedIn,
+    token: token,
     userData: userData,
     setUser: setUser,
     setLoginStatus: setLoginStatus,
+    setToken: setToken,
   };
 
   return (

@@ -29,6 +29,8 @@ const dummy_recipes = [
 const RecipesGallery = () => {
   const [recipeIndex, setRecipeIndex] = useState(0);
   const [recipeList, setRecipeList] = useState();
+  const [filteredRecipeList, setFilteredRecipeList] = useState();
+  const [searchValue, setSearchValue] = useState("");
   const location = useLocation().state;
 
   useEffect(() => {
@@ -38,11 +40,14 @@ const RecipesGallery = () => {
       .then((response) => response.json())
       .then((data) => {
         setRecipeList(data);
+        setFilteredRecipeList(data);
+        setSearchValue("");
+        setRecipeIndex(0);
       });
   }, [location]);
 
   const onNextRecipeHandler = () => {
-    if (recipeIndex < recipeList.length - 1) {
+    if (recipeIndex < filteredRecipeList.length - 1) {
       setRecipeIndex((prevState) => prevState + 1);
     }
   };
@@ -52,6 +57,22 @@ const RecipesGallery = () => {
       setRecipeIndex((prevState) => prevState + -1);
     }
   };
+
+  const onChangeSearch = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  useEffect(() => {
+    if (searchValue != "") {
+      setFilteredRecipeList(
+        recipeList.filter((el) => el.name.includes(searchValue))
+      );
+      setRecipeIndex(0);
+    } else {
+      setFilteredRecipeList(recipeList);
+      setRecipeIndex(0);
+    }
+  }, [searchValue]);
 
   return (
     <div className={styles.wrapper}>
@@ -68,8 +89,15 @@ const RecipesGallery = () => {
           src={rightArrow}
         ></img>
       </div>
-
-      {recipeList && <RecipeItem recipeInfo={recipeList[recipeIndex]} />}
+      <input
+        placeholder="Search..."
+        onChange={onChangeSearch}
+        className={styles.search}
+        value={searchValue}
+      />
+      {recipeList && (
+        <RecipeItem recipeInfo={filteredRecipeList[recipeIndex]} />
+      )}
     </div>
   );
 };

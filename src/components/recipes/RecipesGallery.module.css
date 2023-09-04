@@ -2,7 +2,7 @@
   position: relative;
   height: 70vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -18,6 +18,12 @@
   flex-direction: row;
   justify-content: space-between;
   z-index: 100;
+}
+
+.search {
+  width: 20%;
+  background-color: white;
+  margin-top: 2rem;
 }
 
 .left-arrow {
@@ -40,6 +46,10 @@
 
 @media only screen and (max-width: 768px) {
   .navigation-arrows {
-    top: 70vh;
+    top: 73vh;
+  }
+
+  .search {
+    width: 70%;
   }
 }
