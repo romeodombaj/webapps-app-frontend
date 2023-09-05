@@ -17,20 +17,26 @@ const PostedRecipe = (props) => {
   };
 
   const onUpdateHandler = (data) => {
-    fetch(`http://localhost:5000/recipes/patch/${props.recipeInfo._id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...data,
-      }),
-    }).then(() => props.fetchData());
+    fetch(
+      `https://webapps-app-backend-7q54.vercel.app/recipes/patch/${props.recipeInfo._id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+        }),
+      }
+    ).then(() => props.fetchData());
     setIsUpdating(false);
   };
 
   const onDeleteHandler = (e) => {
-    fetch(`http://localhost:5000/recipes/delete/${props.recipeInfo._id}`, {
-      method: "delete",
-    }).then(() => props.fetchData());
+    fetch(
+      `https://webapps-app-backend-7q54.vercel.app/recipes/delete/${props.recipeInfo._id}`,
+      {
+        method: "delete",
+      }
+    ).then(() => props.fetchData());
   };
 
   return (

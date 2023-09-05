@@ -13,7 +13,7 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/recipes/category-list")
+    fetch("https://webapps-app-backend-7q54.vercel.app/recipes/category-list")
       .then((response) => response.json())
       .then((data) => {
         setCategoryList(data);

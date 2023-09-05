@@ -21,7 +21,9 @@ const NewRecipe = () => {
   };
 
   const fetchHandler = () => {
-    fetch(`http://localhost:5000/recipes/${userCtx.userData.username}`)
+    fetch(
+      `https://webapps-app-backend-7q54.vercel.app/recipes/${userCtx.userData.username}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setShowRecipeList(data);

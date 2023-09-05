@@ -88,7 +88,7 @@ const Rating = (props) => {
       rating: ratings,
     };
 
-    fetch(`http://localhost:5000/recipes/patch/${id}`, {
+    fetch(`https://webapps-app-backend-7q54.vercel.app/recipes/patch/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

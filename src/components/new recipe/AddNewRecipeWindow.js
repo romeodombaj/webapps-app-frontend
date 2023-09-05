@@ -10,7 +10,7 @@ const AddNewRecipeWindow = (props) => {
   };
 
   const postDataHandler = (data) => {
-    fetch("http://localhost:5000/new", {
+    fetch("https://webapps-app-backend-7q54.vercel.app/new", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

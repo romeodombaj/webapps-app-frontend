@@ -24,7 +24,7 @@ const FocusRecipe = (props) => {
       mode = "saveRecipe";
     }
 
-    fetch(`http://localhost:5000/users/${mode}`, {
+    fetch(`https://webapps-app-backend-7q54.vercel.app/users/${mode}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

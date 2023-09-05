@@ -42,7 +42,7 @@ const RecipesGallery = () => {
   useEffect(() => {
     let catString;
     location ? (catString = location.catString) : (catString = "");
-    fetch(`http://localhost:5000/recipes/${catString}`)
+    fetch(`https://webapps-app-backend-7q54.vercel.app/recipes/${catString}`)
       .then((response) => response.json())
       .then((data) => {
         setRecipeList(data);
