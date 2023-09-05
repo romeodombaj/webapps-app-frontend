@@ -31,15 +31,18 @@ const SignUp = () => {
   };
 
   async function request(mode, data) {
-    const response = await fetch(`http://localhost:5000/users/${mode}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...data,
-      }),
-    }).then((response) => {
+    const response = await fetch(
+      `https://webapps-app-backend-7q54.vercel.app/users/${mode}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+        }),
+      }
+    ).then((response) => {
       if (response.ok) {
         if (mode === "login") {
           response.json().then((resp) => {
