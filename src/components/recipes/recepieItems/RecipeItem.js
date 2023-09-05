@@ -5,7 +5,6 @@ import Rating from "../../UI/Rating";
 import { useContext } from "react";
 import UserContext from "../../store/user-context";
 
-
 const RecipeItem = (props) => {
   const recipe = props.recipeInfo;
   const [isFocused, setIsFocued] = useState(false);
@@ -18,11 +17,12 @@ const RecipeItem = (props) => {
     setIsFocued(false);
   };
 
-
-
   const averageRating = () => {
-    let array = recipe.rating.map((el) => el.rating);
-    let average = array.reduce((a, b) => a + b, 0) / array.length;
+    let array;
+    let average;
+
+    array = recipe.rating.map((el) => el.rating);
+    average = array.reduce((a, b) => a + b, 0) / array.length;
 
     return average;
   };
@@ -40,8 +40,6 @@ const RecipeItem = (props) => {
           <div className={styles.description}>
             {recipe.description.substring(0, 150)} ...
           </div>
-
-
 
           {recipe && <Rating static={true} value={averageRating()} />}
         </div>

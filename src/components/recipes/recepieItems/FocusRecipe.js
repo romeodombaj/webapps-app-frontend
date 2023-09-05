@@ -74,7 +74,7 @@ const FocusRecipe = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <img className={styles.image} src={tempImg} />
+      <img className={styles.image} src={props.recipeInfo.image} />
       <img
         onClick={onCloseFocus}
         className={styles[`back-button`]}

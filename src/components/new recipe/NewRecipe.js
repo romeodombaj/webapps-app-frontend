@@ -8,8 +8,6 @@ import UserContext from "../store/user-context";
 
 const NewRecipe = () => {
   const [isAddingNewRecipe, setIsAddingNewRecipe] = useState(false);
-  const [recipeList, setRecepieList] = useState();
-  const [savedRecipeList, setSavedRecipeList] = useState();
   const [shownRecipeList, setShowRecipeList] = useState();
 
   const userCtx = useContext(UserContext);
@@ -22,30 +20,16 @@ const NewRecipe = () => {
     setIsAddingNewRecipe(false);
   };
 
-
-
   const fetchHandler = () => {
     fetch(`http://localhost:5000/recipes/${userCtx.userData.username}`)
       .then((response) => response.json())
       .then((data) => {
-        setRecepieList(data);
         setShowRecipeList(data);
-      });
-  };
-
-  const fetchSavedHandler = () => {
-    fetch(`http://localhost:5000/recipes/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSavedRecipeList(
-          data.filter((el) => userCtx.userData.saved.includes(el._id))
-        );
       });
   };
 
   useEffect(() => {
     fetchHandler();
-    fetchSavedHandler();
   }, []);
 
   return (
@@ -83,7 +67,6 @@ const NewRecipe = () => {
                 src={addIcon}
                 className={styles["add-button"]}
               />
-
             </div>
           </div>
         </Fragment>
