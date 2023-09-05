@@ -23,7 +23,6 @@
 .search {
   width: 20%;
   background-color: white;
-  margin-top: 2rem;
 }
 
 .left-arrow {
@@ -44,6 +43,34 @@
   scale: 0.7;
 }
 
+.save-button {
+  background-color: white;
+  border-radius: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-left: 0.5rem;
+}
+
+.save-button:hover {
+  scale: 0.9;
+}
+
+.save-button-active {
+  background-color: rgb(187, 139, 50);
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 70%;
+}
+
 @media only screen and (max-width: 768px) {
   .navigation-arrows {
     top: 73vh;
@@ -51,5 +78,9 @@
 
   .search {
     width: 70%;
+  }
+
+  .filters {
+    width: 90%;
   }
 }

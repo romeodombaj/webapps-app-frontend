@@ -58,6 +58,7 @@ const SignUpForm = (props) => {
       <div className={styles.property}>
         <div>Username</div>
         <input
+          placeholder="user1"
           className={styles.input}
           onChange={onUsernameChangeHandler}
           value={username}
@@ -96,6 +97,7 @@ const SignUpForm = (props) => {
       <div className={styles[`property`]}>
         <div>Password</div>
         <input
+          placeholder="user1"
           type="password"
           className={styles.input}
           onChange={onPasswordChangeHandler}

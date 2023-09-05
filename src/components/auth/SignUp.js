@@ -74,6 +74,7 @@ const SignUp = () => {
       <div className={styles.option} onClick={isLoggingInHandler}>
         Login
       </div>
+      <div>*u placeholerima ispisan default login</div>
       {isLoggingIn && (
         <SignUpForm error={error} onSub={loginSubmit} action="Login" />
       )}

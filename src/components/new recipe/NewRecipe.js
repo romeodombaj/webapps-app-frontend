@@ -10,7 +10,7 @@ const NewRecipe = () => {
   const [isAddingNewRecipe, setIsAddingNewRecipe] = useState(false);
   const [recipeList, setRecepieList] = useState();
   const [savedRecipeList, setSavedRecipeList] = useState();
-  const [isShowingSaved, setIsShowingSaved] = useState(false);
+  const [shownRecipeList, setShowRecipeList] = useState();
 
   const userCtx = useContext(UserContext);
 
@@ -22,16 +22,14 @@ const NewRecipe = () => {
     setIsAddingNewRecipe(false);
   };
 
-  const toggleSaved = () => {
-    setIsShowingSaved((prevVal) => !prevVal);
-    console.log(savedRecipeList);
-  };
+
 
   const fetchHandler = () => {
     fetch(`http://localhost:5000/recipes/${userCtx.userData.username}`)
       .then((response) => response.json())
       .then((data) => {
         setRecepieList(data);
+        setShowRecipeList(data);
       });
   };
 
@@ -39,9 +37,9 @@ const NewRecipe = () => {
     fetch(`http://localhost:5000/recipes/`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(userCtx.userData.saved);
-        setSavedRecipeList();
-        //data.filter((el) => userCtx.userData.saved.includes(el._id))
+        setSavedRecipeList(
+          data.filter((el) => userCtx.userData.saved.includes(el._id))
+        );
       });
   };
 
@@ -66,8 +64,8 @@ const NewRecipe = () => {
           <div className={styles["wrapper"]}>
             <div className={styles[`posted-recipes-wrapper`]}>
               <div className={styles["posted-recipes"]}>
-                {recipeList &&
-                  recipeList.reverse().map((recipe) => {
+                {shownRecipeList &&
+                  shownRecipeList.reverse().map((recipe) => {
                     return (
                       <PostedRecipe
                         onEdit={openNewRecipeWindowHandler}
@@ -85,13 +83,7 @@ const NewRecipe = () => {
                 src={addIcon}
                 className={styles["add-button"]}
               />
-              <img
-                onClick={toggleSaved}
-                src={saveIcon}
-                className={`${styles["save-button"]} ${
-                  styles[isShowingSaved && "save-button-active"]
-                }`}
-              />
+
             </div>
           </div>
         </Fragment>

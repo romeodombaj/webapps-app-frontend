@@ -53,23 +53,7 @@
   scale: 0.9;
 }
 
-.save-button {
-  background-color: aliceblue;
-  border-radius: 2rem;
-  height: 3rem;
-  width: 3rem;
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: 0.4s;
-}
 
-.save-button:hover {
-  scale: 0.9;
-}
-
-.save-button-active {
-  background-color: rgb(187, 139, 50);
-}
 
 @media only screen and (max-width: 768px) {
   .wrapper {

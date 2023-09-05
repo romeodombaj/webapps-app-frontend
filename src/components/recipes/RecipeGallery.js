@@ -2,8 +2,10 @@ import styles from "./RecipesGallery.module.css";
 import RecipeItem from "./recepieItems/RecipeItem";
 import leftArrow from "../../assets/leftarrow.png";
 import rightArrow from "../../assets/rightarrow.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router";
+import UserContext from "../store/user-context";
+import saveIcon from "../../assets/save_icon.png";
 
 const dummy_recipes = [
   {
@@ -31,7 +33,11 @@ const RecipesGallery = () => {
   const [recipeList, setRecipeList] = useState();
   const [filteredRecipeList, setFilteredRecipeList] = useState();
   const [searchValue, setSearchValue] = useState("");
+  const [isShowingSaved, setIsShowingSaved] = useState(false);
+  const [currentList, setCurrentList] = useState();
+
   const location = useLocation().state;
+  const userCtx = useContext(UserContext);
 
   useEffect(() => {
     let catString;
@@ -43,8 +49,22 @@ const RecipesGallery = () => {
         setFilteredRecipeList(data);
         setSearchValue("");
         setRecipeIndex(0);
+        setCurrentList(data);
       });
   }, [location]);
+
+  const toggleSaved = () => {
+    if (isShowingSaved) {
+      setCurrentList(recipeList);
+      setRecipeIndex(0);
+    } else {
+      setCurrentList(
+        recipeList.filter((el) => userCtx.userData.saved.includes(el._id))
+      );
+      setRecipeIndex(0);
+    }
+    setIsShowingSaved((prevVal) => !prevVal);
+  };
 
   const onNextRecipeHandler = () => {
     if (recipeIndex < filteredRecipeList.length - 1) {
@@ -65,17 +85,17 @@ const RecipesGallery = () => {
   useEffect(() => {
     if (searchValue != "") {
       setFilteredRecipeList(
-        recipeList.filter(
+        currentList.filter(
           (el) =>
             el.name.includes(searchValue) || el.category.includes(searchValue)
         )
       );
       setRecipeIndex(0);
     } else {
-      setFilteredRecipeList(recipeList);
+      setFilteredRecipeList(currentList);
       setRecipeIndex(0);
     }
-  }, [searchValue]);
+  }, [searchValue, currentList]);
 
   return (
     <div className={styles.wrapper}>
@@ -92,12 +112,23 @@ const RecipesGallery = () => {
           src={rightArrow}
         ></img>
       </div>
-      <input
-        placeholder="Search..."
-        onChange={onChangeSearch}
-        className={styles.search}
-        value={searchValue}
-      />
+
+      <div className={styles.filters}>
+        <input
+          placeholder="Search..."
+          onChange={onChangeSearch}
+          className={styles.search}
+          value={searchValue}
+        />
+        <img
+          onClick={toggleSaved}
+          src={saveIcon}
+          className={`${styles["save-button"]} ${
+            styles[isShowingSaved && "save-button-active"]
+          }`}
+        />
+      </div>
+
       {recipeList && (
         <RecipeItem recipeInfo={filteredRecipeList[recipeIndex]} />
       )}
